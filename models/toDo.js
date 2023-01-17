@@ -6,11 +6,7 @@ const ToDoSchema = new mongoose.Schema({
         required: [true, "Title is required"]
     },
 
-    task: {
-        type: [{
-            type: String
-        }]
-    },
+    task: [String],
 
     completed: {
         type: Boolean,

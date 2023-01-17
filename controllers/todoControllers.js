@@ -1,4 +1,3 @@
-const { findById } = require("../models/toDo")
 const Todo = require("../models/toDo")
 
 exports.home = (req, res) => {
