@@ -31,10 +31,10 @@ exports.createTodo = async (req, res) => {
 exports.getTodo = async (req, res) => {
     try {
         const todos = await Todo.find()
-    res.status(200).json({
-        success: true,
-        todos
-    })
+        res.status(200).json({
+            success: true,
+            todos
+        })
     } catch (error) {
         console.log(error);
         res.status(401).json({
@@ -46,11 +46,11 @@ exports.getTodo = async (req, res) => {
 
 exports.editTodo = async (req, res) => {
     try {
-        const {todoId} = req.params
-        const {title} = req.body
-        const todoExists =await Todo.findById(todoId)
+        const { todoId } = req.params
+        const { title } = req.body
+        const todoExists = await Todo.findById(todoId)
         const todo = await Todo.findById(todoId)
-        if(!todoExists){
+        if (!todoExists) {
             throw new Error("This Todo do not exists")
         }
         todo.title = title
@@ -70,18 +70,18 @@ exports.editTodo = async (req, res) => {
 
 exports.deleteTodo = async (req, res) => {
     try {
-        const {todoId} = req.params
-    const todoExists = await Todo.findById(todoId) 
-    if(!todoExists){
-        throw new Error("This Todo do not exists")
-    }
-     
-    const deleteTodo = await Todo.findByIdAndDelete(todoId)
-    res.status(200).json({
-        success: true,
-        message: "Todo deleted successfully",
-        deletedTodo: deleteTodo
-    })
+        const { todoId } = req.params
+        const todoExists = await Todo.findById(todoId)
+        if (!todoExists) {
+            throw new Error("This Todo do not exists")
+        }
+
+        const deleteTodo = await Todo.findByIdAndDelete(todoId)
+        res.status(200).json({
+            success: true,
+            message: "Todo deleted successfully",
+            deletedTodo: deleteTodo
+        })
     } catch (error) {
         res.status(401).json({
             success: false,
