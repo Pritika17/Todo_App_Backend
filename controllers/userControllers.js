@@ -97,3 +97,19 @@ exports.loginUser = async (req, res) => {
         })
     }
 }
+
+exports.getUsers = async (req, res) => {
+    try {
+        const user = await User.find().select("-password")
+
+        res.status(200).json({
+            success: true,
+            user
+        })
+    } catch (error) {
+        res.status(401).json({
+            success: false,
+            message: error.message
+        })
+    }
+}
